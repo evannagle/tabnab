@@ -1,0 +1,40 @@
+{
+  "name": "bootboot",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "build": "make build",
+    "clean": "make clean",
+    "app": "make app",
+    "docs": "make docs",
+    "changelog": "make changelog",
+    "format": "make format",
+    "lint": "make lint",
+    "lint:fix": "make lint-fix",
+    "prepare:husky": "make install-husky",
+    "test": "make test",
+    "test:coverage": "make test-coverage",
+    "vis:deps": "make visualize-dependencies",
+    "vis:deps:circular": "make visualize-circular-dependencies",
+    "vis:deps:graph": "make visualize-dependencies-graph",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "GNU GPLv3",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "auto-changelog": "^2.4.0",
+    "esbuild": "^0.20.2",
+    "eslint": "^8.57.0",
+    "husky": "^9.0.11",
+    "prettier": "^3.2.5",
+    "prompts": "^2.4.2",
+    "ts-jest": "^29.1.2",
+    "typedoc": "^0.25.12",
+    "typedoc-plugin-markdown": "^3.17.1",
+    "typescript": "^5.4.3",
+    "typescript-eslint": "^7.4.0"
+  }
+}
