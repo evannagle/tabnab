@@ -140,3 +140,18 @@ env:
 # Move `.env-example` to `.env`.
 	$(call title, "Moving .env-example to .env")
 	cp .env-example .env
+
+patch-release:
+# Bump the patch version of the project.
+	$(call title, "Bumping the patch version")
+	$(BIN_FOR_NPM) version patch && git push --follow-tags
+
+major-release:
+# Bump the major version of the project.
+	$(call title, "Bumping the major version")
+	$(BIN_FOR_NPM) version major && git push --follow-tags
+
+minor-release:
+# Bump the minor version of the project.
+	$(call title, "Bumping the minor version")
+	$(BIN_FOR_NPM) version minor && git push --follow-tags
