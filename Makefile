@@ -3,7 +3,7 @@
 # @link https://makefiletutorial.com/
 
 
-BIN_FOR_APP					= dist/app.js
+BIN_FOR_APP					= dist/index.js
 BIN_FOR_NODE				= node
 BIN_FOR_MADGE				= madge	
 BIN_FOR_NPM					= npm

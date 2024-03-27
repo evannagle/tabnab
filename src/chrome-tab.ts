@@ -11,7 +11,7 @@ import { runAppleScript } from "spawn-applescript";
  */
 async function renderApplescript(
   relpath: string,
-  model: { [key: string]: string },
+  model: { [key: string]: string }
 ) {
   const templatePath = path.join(__dirname, relpath);
   const template = fs.readFileSync(templatePath, "utf8");
@@ -54,7 +54,7 @@ export class ChromeTab {
   async getHtmlSource(): Promise<string> {
     if (!this._source) {
       this._source = await renderApplescript("chrome-tab-source.scpt", {
-        target_url: this.url,
+        target_url: this.url.toString(),
       });
     }
 

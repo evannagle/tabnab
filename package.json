@@ -1,7 +1,10 @@
 {
   "name": "tabnab",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "version": "1.0.0",
   "description": "",
+  "prepublish": "npm run build",
   "scripts": {
     "build": "make build",
     "clean": "make clean",

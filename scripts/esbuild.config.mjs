@@ -22,7 +22,7 @@ esbuild.build({
     },
     entryPoints: ['src/index.ts'],
     bundle: true,
-    outfile: 'dist/app.js',
+    outfile: 'dist/index.js',
     target: 'es2020',
     external: [
         ...builtins
