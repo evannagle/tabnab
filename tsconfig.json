@@ -3,20 +3,21 @@
     "baseUrl": "src",
     "inlineSourceMap": true,
     "inlineSources": true,
-    "module": "ES2020",
-    "target": "ESNext",
+    "module": "ESNext",
+    "target": "ES6",
     "allowJs": true,
     "noImplicitAny": true,
     "outDir": "dist",
     "rootDirs": ["src", "tests"],
-    "moduleResolution": "Bundler",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "importHelpers": true,
     "strict": true,
     "isolatedModules": true,
     "strictNullChecks": true,
-    "lib": ["DOM", "ES5", "ES6", "ES7"]
+    "skipLibCheck": true,
+    "lib": ["DOM", "ES5", "ES6", "ES7", "ESNext"]
   },
   "include": ["src/**/*.ts", "tests/**/*.ts", "docs/**/*"]
 }

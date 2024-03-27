@@ -10,9 +10,10 @@ BIN_FOR_NPM					= npm
 BIN_FOR_NPX					= npx
 PATHS_THAT_ARE_EPHEMERAL	= dist coverage docs/graph.png
 PATH_TO_SCRIPTS				= scripts
-	PATH_FOR_ESBUILD_CONFIG		= $(PATH_TO_SCRIPTS)/esbuild.config.js
+	PATH_FOR_ESBUILD_CONFIG		= $(PATH_TO_SCRIPTS)/esbuild.config.mjs
 	PATH_FOR_GRAPH_PNG		 	= $(PATH_TO_DOCS)/graph.png
 
+PATH_TO_DIST				= dist
 PATH_TO_DOCS				= docs
 
 
@@ -48,6 +49,7 @@ build:
 # Build the app, dump into the dist folder.
 	$(call title, "Building the app: $(BIN_FOR_APP)")
 	$(BIN_FOR_NODE) $(PATH_FOR_ESBUILD_CONFIG) production
+	cp src/*.scpt dist
 
 app: clean build
 # Rebuild the app, then run it to get the output.
