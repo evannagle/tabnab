@@ -234,7 +234,11 @@ program
 program
   .command("list")
   .description("List all open Chrome tabs")
-  .option("-f, --format <format>", "Output format (json, markdown, text)", "text")
+  .option(
+    "-f, --format <format>",
+    "Output format (json, markdown, text)",
+    "text",
+  )
   .option("--url-only", "Only output URLs")
   .option("--title-only", "Only output titles")
   .option("-c, --clipboard", "Copy output to clipboard")
@@ -281,7 +285,11 @@ program
 program
   .command("active")
   .description("Get the currently active Chrome tab")
-  .option("-f, --format <format>", "Output format (json, markdown, text)", "text")
+  .option(
+    "-f, --format <format>",
+    "Output format (json, markdown, text)",
+    "text",
+  )
   .option("-c, --clipboard", "Copy output to clipboard")
   .action(async (options) => {
     try {
@@ -315,8 +323,15 @@ program
 program
   .command("extract <selector>")
   .description("Extract content from Chrome tabs using CSS selector")
-  .option("-f, --format <format>", "Output format (json, markdown, text)", "text")
-  .option("-p, --property <property>", "Property to extract (text, html, attr, attr:name)")
+  .option(
+    "-f, --format <format>",
+    "Output format (json, markdown, text)",
+    "text",
+  )
+  .option(
+    "-p, --property <property>",
+    "Property to extract (text, html, attr, attr:name)",
+  )
   .option("-a, --active-only", "Only extract from active tab")
   .option("-c, --clipboard", "Copy output to clipboard")
   .option("--filter <pattern>", "Filter tabs by URL pattern (regex)")
@@ -350,7 +365,9 @@ program
 
       if (options.clipboard) {
         await copyToClipboard(output);
-        console.log(`✓ Copied extracted content from ${tabs.length} tab(s) to clipboard`);
+        console.log(
+          `✓ Copied extracted content from ${tabs.length} tab(s) to clipboard`,
+        );
       } else {
         console.log(output);
       }
@@ -398,7 +415,11 @@ program
 program
   .command("links")
   .description("Extract all links from Chrome tabs")
-  .option("-f, --format <format>", "Output format (json, markdown, text)", "text")
+  .option(
+    "-f, --format <format>",
+    "Output format (json, markdown, text)",
+    "text",
+  )
   .option("-a, --active-only", "Only extract from active tab")
   .option("-c, --clipboard", "Copy output to clipboard")
   .option("--internal-only", "Only include internal links (same domain)")
@@ -423,7 +444,7 @@ program
           const $ = await tab.loadDom();
           const domain = tab.url.hostname;
 
-          let links: Array<{ href: string; text: string }> = [];
+          const links: Array<{ href: string; text: string }> = [];
 
           $("a[href]").each((_, el) => {
             const href = $(el).attr("href");
@@ -491,7 +512,9 @@ program
       if (options.clipboard) {
         await copyToClipboard(output);
         const totalLinks = results.reduce((sum, r) => sum + r.links.length, 0);
-        console.log(`✓ Copied ${totalLinks} link(s) from ${results.length} tab(s) to clipboard`);
+        console.log(
+          `✓ Copied ${totalLinks} link(s) from ${results.length} tab(s) to clipboard`,
+        );
       } else {
         console.log(output);
       }
@@ -558,7 +581,9 @@ program
 
       if (options.clipboard) {
         await copyToClipboard(output);
-        console.log(`✓ Copied metadata from ${results.length} tab(s) to clipboard`);
+        console.log(
+          `✓ Copied metadata from ${results.length} tab(s) to clipboard`,
+        );
       } else {
         console.log(output);
       }
@@ -572,7 +597,11 @@ program
 program
   .command("readability")
   .description("Extract main article content using Mozilla Readability")
-  .option("-f, --format <format>", "Output format (json, markdown, text)", "text")
+  .option(
+    "-f, --format <format>",
+    "Output format (json, markdown, text)",
+    "text",
+  )
   .option("-a, --active-only", "Only extract from active tab")
   .option("-c, --clipboard", "Copy output to clipboard")
   .option("--filter <pattern>", "Filter tabs by URL pattern (regex)")
@@ -619,7 +648,8 @@ program
       } else if (format === "markdown") {
         output = results
           .map((r) => {
-            if (!r.article) return `## ${r.tab}\n\n*Could not extract article content*\n\n`;
+            if (!r.article)
+              return `## ${r.tab}\n\n*Could not extract article content*\n\n`;
             let md = `# ${r.article.title}\n\n`;
             md += `**Author:** ${r.article.byline || "Unknown"}\n`;
             md += `**URL:** ${r.url}\n\n`;
@@ -630,7 +660,8 @@ program
       } else {
         output = results
           .map((r) => {
-            if (!r.article) return `${r.tab}\n\nCould not extract article content\n\n`;
+            if (!r.article)
+              return `${r.tab}\n\nCould not extract article content\n\n`;
             let text = `${r.article.title}\n${"=".repeat(r.article.title.length)}\n`;
             if (r.article.byline) text += `By ${r.article.byline}\n`;
             text += `\n${r.article.textContent}\n`;
@@ -641,7 +672,9 @@ program
 
       if (options.clipboard) {
         await copyToClipboard(output);
-        console.log(`✓ Copied article content from ${results.length} tab(s) to clipboard`);
+        console.log(
+          `✓ Copied article content from ${results.length} tab(s) to clipboard`,
+        );
       } else {
         console.log(output);
       }
@@ -655,7 +688,11 @@ program
 program
   .command("cite")
   .description("Generate citation or reference for tab")
-  .option("-f, --format <format>", "Citation format (markdown, text, url)", "markdown")
+  .option(
+    "-f, --format <format>",
+    "Citation format (markdown, text, url)",
+    "markdown",
+  )
   .option("-c, --clipboard", "Copy output to clipboard")
   .action(async (options) => {
     try {
@@ -667,13 +704,7 @@ program
       }
 
       const cleanUrl = normalizeUrl(tab.url.toString(), {
-        removeQueryParameters: [
-          /^utm_/i,
-          "ref",
-          "source",
-          "fbclid",
-          "gclid",
-        ],
+        removeQueryParameters: [/^utm_/i, "ref", "source", "fbclid", "gclid"],
       });
 
       let output = "";
@@ -833,7 +864,10 @@ program
       }
 
       console.error(`Applying prompt template '${template}'...`);
-      const result = await AI.applyPromptTemplate(article.textContent, template);
+      const result = await AI.applyPromptTemplate(
+        article.textContent,
+        template,
+      );
 
       const output = `${result}\n\nSource: ${tab.url.toString()}`;
 
@@ -850,7 +884,9 @@ program
   });
 
 // Manage configuration and prompts
-const configCmd = program.command("config").description("Manage tabnab configuration");
+const configCmd = program
+  .command("config")
+  .description("Manage tabnab configuration");
 
 configCmd
   .command("set-api-key <key>")
@@ -866,7 +902,9 @@ configCmd
   .action(() => {
     const key = AI.getApiKey();
     if (key) {
-      console.log(`Current API key: ${key.substring(0, 8)}...${key.substring(key.length - 4)}`);
+      console.log(
+        `Current API key: ${key.substring(0, 8)}...${key.substring(key.length - 4)}`,
+      );
     } else {
       console.log("No API key set");
     }
@@ -886,7 +924,9 @@ configCmd
   .action(() => {
     const prompts = AI.listPrompts();
     if (prompts.length === 0) {
-      console.log("No prompts found. Run 'tabnab config init-prompts' to create defaults.");
+      console.log(
+        "No prompts found. Run 'tabnab config init-prompts' to create defaults.",
+      );
     } else {
       console.log("Available prompt templates:\n");
       prompts.forEach((p) => {
