@@ -2,8 +2,11 @@
   "name": "tabnab",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "tabnab": "dist/cli.js"
+  },
   "version": "1.0.1",
-  "description": "",
+  "description": "Extract and process content from Chrome tabs via CLI - scrape, summarize, and analyze web pages",
   "prepublish": "npm run build",
   "scripts": {
     "build": "make build",
@@ -26,8 +29,23 @@
   "author": "",
   "license": "GNU GPLv3",
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.70.1",
+    "@mozilla/readability": "^0.6.0",
     "cheerio": "^1.0.0-rc.12",
+    "commander": "^14.0.2",
+    "conf": "^15.0.2",
     "got": "^14.2.1",
+    "happy-dom": "^20.0.10",
+    "metascraper": "^5.49.5",
+    "metascraper-author": "^5.49.5",
+    "metascraper-date": "^5.49.5",
+    "metascraper-description": "^5.49.5",
+    "metascraper-image": "^5.49.5",
+    "metascraper-logo": "^5.49.5",
+    "metascraper-publisher": "^5.49.5",
+    "metascraper-title": "^5.49.5",
+    "metascraper-url": "^5.49.5",
+    "normalize-url": "^8.1.0",
     "run-applescript": "^7.0.0"
   },
   "devDependencies": {
